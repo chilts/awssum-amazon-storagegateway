@@ -22,7 +22,6 @@ var _ = require('underscore');
 var awssum = require('awssum');
 var amazon = require('awssum-amazon');
 var operations = require('./config.js');
-var awsSignatureV4 = require('./aws-signature-v4');
 
 // --------------------------------------------------------------------------------------------------------------------
 // package variables
@@ -61,7 +60,7 @@ var StorageGateway = function(opts) {
 };
 
 // inherit from Amazon
-util.inherits(StorageGateway, amazon.Amazon);
+util.inherits(StorageGateway, amazon.AmazonSignatureV4);
 
 // --------------------------------------------------------------------------------------------------------------------
 // methods we need to implement from awssum.js/amazon.js
@@ -93,13 +92,6 @@ StorageGateway.prototype.version = function() {
 StorageGateway.prototype.extractBody = function() {
     return 'json';
 };
-
-// this service uses the AWS Signature v4
-StorageGateway.prototype.strToSign        = awsSignatureV4.strToSign;
-StorageGateway.prototype.signature        = awsSignatureV4.signature;
-StorageGateway.prototype.addSignature     = awsSignatureV4.addSignature;
-StorageGateway.prototype.addCommonOptions = awsSignatureV4.addCommonOptions;
-StorageGateway.prototype.contentType      = awsSignatureV4.contentType;
 
 // --------------------------------------------------------------------------------------------------------------------
 // operations on the service
