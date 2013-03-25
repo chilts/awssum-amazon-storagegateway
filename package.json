@@ -1,6 +1,6 @@
 {
     "name" : "awssum-amazon-storagegateway",
-    "description" : "NodeJS module to talk to Amazon StorageGateway.",
+    "description" : "AwsSum plugin for Amazon StorageGateway.",
     "version" : "1.0.0",
 
     "main" : "awssum-amazon-storagegateway.js",
